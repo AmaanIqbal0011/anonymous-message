@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import AuthProvider from "@/context/AuthProvider";
 
 const VerifyPage = () => {
   const router = useRouter();
@@ -45,6 +46,7 @@ const VerifyPage = () => {
   };
 
   return (
+    <AuthProvider>
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
       <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-lg shadow-md">
         <div className="text-center">
@@ -78,6 +80,7 @@ const VerifyPage = () => {
         </Form>
       </div>
     </div>
+    </AuthProvider>
   );
 };
 
