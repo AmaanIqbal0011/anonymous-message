@@ -165,7 +165,7 @@ const Dashboard = () => {
           <div className="grid gap-4">
             {messages.map((message) => (
               <MessageCard
-                key={message._id}
+                key={message._id.toString()}
                 message={message}
                 onMessageDelete={handleDeleteMessage}
               />
