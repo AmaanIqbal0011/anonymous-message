@@ -17,8 +17,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    <AuthProvider>
     <html lang="en">
-      <AuthProvider>
+      
       <body>
         
         <Navbar />
@@ -26,8 +27,9 @@ export default function RootLayout({
         <Toaster />
       
       </body>
-        </AuthProvider>
+       
       
     </html>
+     </AuthProvider>
   );
 }
