@@ -62,14 +62,15 @@ const MessageCard = ({ message, onMessageDelete }: MessageCardProps) => {
         <AlertDialog>
           <AlertDialogTrigger asChild>
             <Button variant="destructive" size="icon" className="p-2 rounded-full">
-              <X className="h-4 w-4" />
+              <X className="h-4 w-4 text-black" />
+              
             </Button>
           </AlertDialogTrigger>
 
           <AlertDialogContent>
             <AlertDialogHeader>
               <AlertDialogTitle>Delete Message?</AlertDialogTitle>
-              <AlertDialogDescription>
+              <AlertDialogDescription className='text-black'>
                 This action cannot be undone. The message will be permanently removed.
               </AlertDialogDescription>
             </AlertDialogHeader>

@@ -12,6 +12,7 @@ import { toast } from "sonner"
 import { User } from "next-auth"
 import { Types } from "mongoose"
 import MessageCard from "@/components/messageCard"
+import AuthProvider from "@/context/AuthProvider"
 
 const Dashboard = () => {
   const [messages, setMessages] = useState<Message[]>([])
@@ -87,6 +88,7 @@ const Dashboard = () => {
   // const profileUrl = `${baseUrl}/u/${username}`
 
   return (
+    <AuthProvider>
     <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-sky-50 px-4 py-12">
       <div className="mx-auto max-w-5xl space-y-10">
 
@@ -174,6 +176,7 @@ const Dashboard = () => {
         </div>
       </div>
     </div>
+    </AuthProvider>
   )
 }
 

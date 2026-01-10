@@ -23,6 +23,7 @@ import { Button } from "@/components/ui/button"
 import { Loader2 } from "lucide-react"
 
 import { signInSchema } from "@/schemas/signInSchema"
+import AuthProvider from "@/context/AuthProvider"
 
 const SignInPage = () => {
   const router = useRouter()
@@ -58,6 +59,7 @@ const SignInPage = () => {
   }
 
   return (
+    <AuthProvider>
     <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-sky-50 flex items-center justify-center px-4">
       <div className="w-full max-w-md rounded-3xl bg-white/70 backdrop-blur p-8 shadow-lg space-y-6">
 
@@ -145,6 +147,7 @@ const SignInPage = () => {
 
       </div>
     </div>
+    </AuthProvider>
   )
 }
 

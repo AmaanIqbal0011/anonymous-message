@@ -4,11 +4,13 @@ import { useState } from "react"
 import axios, { AxiosError } from "axios"
 import { toast } from "sonner"
 import { ApiResponse } from "@/types/ApiResponse"
-import { useRouter, useSearchParams } from "next/navigation"
+import { useRouter, } from "next/navigation"
+import { useSearchParams } from "next/navigation"
+import AuthProvider from "@/context/AuthProvider"
 
-const HomePage = () => {
+const HomePage =  () => {
   const router = useRouter()
-  const searchParams = useSearchParams()
+  const searchParams =  useSearchParams()
   const usernameFromUrl = searchParams.get("username") || ""
 
   const [formData, setFormData] = useState({
@@ -65,6 +67,7 @@ const HomePage = () => {
   ]
 
   return (
+    <AuthProvider>
     <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-sky-50 px-4 py-16">
       <div className="mx-auto max-w-4xl space-y-16">
 
@@ -179,6 +182,7 @@ const HomePage = () => {
         </div>
       </div>
     </div>
+    </AuthProvider>
   )
 }
 

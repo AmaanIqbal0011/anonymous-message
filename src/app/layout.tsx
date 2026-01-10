@@ -5,6 +5,8 @@ import { Toaster } from "sonner";
 import Navbar from "@/components/navbar";
 
 
+export const dynamic = 'force-dynamic'
+
 
 export const metadata: Metadata = {
   title: "Anonymous Message",

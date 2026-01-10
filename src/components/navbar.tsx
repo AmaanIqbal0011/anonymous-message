@@ -4,12 +4,14 @@ import Link from "next/link"
 import { useSession, signOut } from "next-auth/react"
 import { User } from "next-auth"
 import { Button } from "@/components/ui/button"
+import AuthProvider from "@/context/AuthProvider"
 
 const Navbar = () => {
   const { data: session } = useSession()
   const user: User = session?.user as User
 
   return (
+    <AuthProvider>
     <nav className="sticky top-0 z-50 w-full bg-white/80 backdrop-blur border-b border-white/20 shadow-sm">
       <div className="mx-auto max-w-7xl px-4 py-4 flex flex-col md:flex-row items-center justify-between md:justify-between gap-3 md:gap-0">
 
@@ -63,6 +65,7 @@ const Navbar = () => {
         </div>
       </div>
     </nav>
+    </AuthProvider>
   )
 }
 

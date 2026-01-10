@@ -24,6 +24,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Loader2 } from "lucide-react"
+import AuthProvider from "@/context/AuthProvider"
 
 const SignUpPage = () => {
   const [username, setUsername] = useState("")
@@ -86,6 +87,7 @@ const SignUpPage = () => {
   }
 
   return (
+    <AuthProvider>
     <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-sky-50 flex items-center justify-center px-4">
       <div className="w-full max-w-md rounded-3xl bg-white/70 backdrop-blur p-8 shadow-lg space-y-6">
 
@@ -212,6 +214,7 @@ const SignUpPage = () => {
         </p>
       </div>
     </div>
+    </AuthProvider>
   )
 }
 
