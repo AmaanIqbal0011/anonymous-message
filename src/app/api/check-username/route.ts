@@ -17,36 +17,35 @@ export async function GET(request: Request) {
         username : searchParams.get("username"),
     }
 
-    // validate with zod
+    const result = UsernameQuerySchema.safeParse(queryParams)
+    
+    if (!result.success) {
+        const usernameErrors = result.error.format().username?._errors || [];
+        return Response.json(
+          {
+            success: false,
+            message: "Invalid username",
+            errors: usernameErrors,
+          },
+          { status: 400 }
+        );
+    }
+    
+    const {username} = result.data
 
-   const result = UsernameQuerySchema.safeParse(queryParams)
-console.log(result);
-if (!result.success) {
-    const usernameErrors = result.error.format().username?._errors || [];
-    return Response.json(
-      {
-        success: false,
-        message: "Invalid username",
-        errors: usernameErrors,
-      },
-      { status: 400 }
-    );
-}
-const {username} = result.data
+    const existingUser = await UserModel.findOne({username})
 
-const existingVerifiedUser = await UserModel.findOne({username, isVerified:true})
+    if (existingUser) {
+        return Response.json({
+            success: false,
+            message : 'Username is already taken'
+        },{status:400})
+    }
 
-if (existingVerifiedUser ) {
-    return Response.json({
-        success: false,
-        message : 'Username is already taken'
-    },{status:400})
-}
-
- return Response.json({
-        success: true,
-        message : 'Username is Unique'
-    },{status:400})
+     return Response.json({
+            success: true,
+            message : 'Username is Unique'
+        },{status:200})
 
 
 

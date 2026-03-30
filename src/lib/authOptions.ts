@@ -16,7 +16,7 @@ export  const authOptions: NextAuthOptions = {
       },
       async authorize(credentials, req): Promise<any> {
         const identifier = credentials?.identifier
-      
+
         const password = credentials?.password;
 
 
@@ -30,12 +30,9 @@ export  const authOptions: NextAuthOptions = {
           });
 
           if (!user) {
-            throw new Error("No uer found with this email");
+            throw new Error("No user found with this email");
           }
 
-          if (!user.isVerified) {
-            throw new Error("Please verify your email");
-          }
           const isPasswordCorrect = await bcrypt.compare(
             password,
             user.password
@@ -57,7 +54,6 @@ export  const authOptions: NextAuthOptions = {
     async jwt({ token, user }) {
       if (user) {
         token._id = user._id?.toString();
-        token.isVerified = user.isVerified;
         token.isAcceptingMessages = user.isAcceptingMessages;
         token.username = user.username;
       }
@@ -67,7 +63,6 @@ export  const authOptions: NextAuthOptions = {
     session({ session, token }) {
       if (session.user) {
         session.user._id = token._id as string;
-        session.user.isVerified = token.isVerified as boolean;
         session.user.isAcceptingMessages = token.isAcceptingMessages as boolean;
         session.user.username = token.username as string;
       }
