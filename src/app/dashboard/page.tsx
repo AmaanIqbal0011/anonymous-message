@@ -55,14 +55,16 @@ const Dashboard = () => {
 
   const fetchMessages = useCallback(async (refresh = false) => {
     if (refresh) setIsRefreshing(true)
-    setIsLoading(true)
+    else setIsLoading(true)
     try {
       const response = await axios.get<ApiResponse>("/api/get-messages")
       setMessages(response.data.messages || [])
       if (refresh) toast.success("Messages refreshed")
     } catch (error) {
       const axiosError = error as AxiosError<ApiResponse>
-      toast.error(axiosError.response?.data.message)
+      if (axiosError.response?.status !== 401) {
+        toast.error(axiosError.response?.data.message || "Failed to load messages")
+      }
     } finally {
       setIsLoading(false)
       setIsRefreshing(false)
