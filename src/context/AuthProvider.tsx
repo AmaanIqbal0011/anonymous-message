@@ -5,11 +5,9 @@ import React from "react";
 
 function AuthProvider({children} : {children : React.ReactNode}) {
     return (
-        <div>
-            <SessionProvider>
-                {children}
-            </SessionProvider>
-        </div>
+        <SessionProvider>
+            {children}
+        </SessionProvider>
     )
 }
 
